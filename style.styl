@@ -1,9 +1,12 @@
-body
+centered-container(background = 'white')
+    background-color: background
     display: flex
     flex-direction: column
-    background-color: #39CCCC
     align-items: center
     justify-content: center
+
+body
+    centered-container(#39CCCC)
 h1
     color orange
     font 30px Helvetica
@@ -12,10 +15,7 @@ h1
 p
     text-align: center
 .inputContainer
-    display flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
+    centered-container()
 .search
     margin-top: 10px
     display block
@@ -39,18 +39,15 @@ input
     outline: none
     padding-left: 10px
 .outputContainer
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
+    centered-container()
     height: 400px
     width: 50%
 #myErrorContainer
     font-size: 25px
 .loader
   display: none
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #85144b; 
+  border: 16px solid #f3f3f3
+  border-top: 16px solid #85144b
   border-radius: 50%
   width: 120px
   height: 120px
