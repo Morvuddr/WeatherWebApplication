@@ -1,1 +1,28 @@
-<!DOCTYPE html><html lang="en"><head><title>Weather Web Application</title><link rel="stylesheet" href="style.css"></head><body><h1>Find out the weather in your city</h1><div class="inputContainer"><p>Enter your city now!</p><input id="cityName" type="text"><button class="search" id="search">Search</button></div><div class="outputContainer"><div class="loader" id="loader"></div><div id="myErrorContainer"></div><img id="picture"><div id="place"></div><div id="weather"></div><div id="temperature"></div><div id="wind"></div></div><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Weather Web Application</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body id="body">
+    <h1>Find out the weather in your city</h1>
+    <form class="inputContainer" id="myFormID">
+      <label>Enter your city now!
+        <input id="cityName" type="text">
+      </label>
+      <input class="search" id="search" type="submit">
+    </form>
+    <script id="hdlbrs_tmplt" type="text/x-handlebars-template">
+          <!-- <div class="loader" id="loader"></div> -->
+          <div id="myErrorContainer"> {{ errorString }}</div>
+          <div id="place"> {{ place }} </div>
+          <div id="weather"> {{ weather }}</div>
+          <div id="temperature"> {{ wind }}</div>
+          <div id="wind"> {{ wind }}</div>
+          <div id="press">{{ press }}</div>
+    </script>
+    
+    <script src="handlebars-v4.4.3.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
