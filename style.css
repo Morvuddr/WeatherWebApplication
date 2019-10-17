@@ -1,0 +1,101 @@
+body {
+  background-color: #39cccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+h1 {
+  color: #ffa500;
+  font: 30px Helvetica;
+  text-shadow: 1px 1px 0 #444;
+  text-align: center;
+}
+p {
+  text-align: center;
+}
+.inputContainer {
+  background-color: 'white';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.search {
+  margin-top: 10px;
+  display: block;
+  position: relative;
+  height: 50px;
+  width: 100px;
+  font-size: 15px;
+  background-color: #85144b;
+  color: #fff;
+  border-radius: 15px;
+  outline: none;
+}
+#cityName {
+  height: 30px;
+  border-radius: 10px;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 500px;
+  font: Helvetica;
+  font-size: 20px;
+  outline: none;
+  padding-left: 10px;
+}
+#outputContainerID {
+  background-color: 'white';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 50%;
+  font: 20px Helvetica;
+}
+#myErrorContainer {
+  font-size: 25px;
+}
+.loader {
+  display: none;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #85144b;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+@-moz-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
