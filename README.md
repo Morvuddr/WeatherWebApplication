@@ -10,9 +10,9 @@ A simple web application for viewing the weather in a selected city.
 2. Install [npm](https://www.npmjs.com/get-npm)
 3. Inside project directory stylus using the following command:
 
-	npm install stylus
+		npm install stylus
 
-	stylus style.styl --out ./
+		stylus style.styl --out ./
 
 4. Open index.html in your browser
 5. ???
@@ -22,5 +22,5 @@ A simple web application for viewing the weather in a selected city.
 
 1. After editing style.styl use:
 
-	stylus style.styl --out ./
+		stylus style.styl --out ./
 		
