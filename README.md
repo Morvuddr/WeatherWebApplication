@@ -12,7 +12,7 @@ A simple web application for viewing the weather in a selected city.
 
 		npm install stylus
 
-		stylus style.styl --out ./
+		./node_modules/.bin/stylus style.styl --out ./
 
 4. Open index.html in your browser
 5. ???
