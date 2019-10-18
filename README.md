@@ -22,5 +22,5 @@ A simple web application for viewing the weather in a selected city.
 
 1. After editing style.styl use:
 
-		stylus style.styl --out ./
+		 ./node_modules/.bin/stylus style.styl --out ./
 		
