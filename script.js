@@ -12,36 +12,39 @@ document.getElementById('myFormID').addEventListener("submit", function(event){
         cityName = cityName.replace(/ /g,"+");
         console.log(cityName);
     }
-    //document.getElementById("loader").style.display = "block";
-    search(cityName);
-});
-
-function search(cityName) {
-    let destinationURL = url + '?q=' + cityName + '&APPID=' + APIkey;
-    let xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            let data = JSON.parse(xmlHttp.responseText);
-            console.log(data);
-            drawResult(data, '');
-        } else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) {
-            console.log(xmlHttp.responseText);
-            let data = JSON.parse(xmlHttp.responseText);
-            let errorString = 'Congratulations, you broke the site! :) \n (Most likely, the problem is this: ' + data.message + ' )';
-            drawResult('', errorString);
-        } 
-    }
-    xmlHttp.open("GET", destinationURL, true);
-    xmlHttp.send(null);
-}
-
-function drawResult(data, myError) {
     let output = document.getElementById('outputContainerID');
     if (output) {
         output.remove();
     }
+    document.getElementById("loader").style.display = "block";
+    search(cityName).then((result) => {
+        drawResult(result);
+    });
+});
+
+function search(cityName) {
+    return new Promise(function(resolve,reject){
+        let destinationURL = url + '?q=' + cityName + '&APPID=' + APIkey;
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() { 
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                return resolve([data = JSON.parse(xmlHttp.responseText),'']);
+            } else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) {
+                console.log(xmlHttp.responseText);
+                let data = JSON.parse(xmlHttp.responseText);
+                let errorString = 'Congratulations, you broke the site! :) \n (Most likely, the problem is this: ' + data.message + ' )';
+                return resolve(['', errorString]);
+            } 
+        }
+        xmlHttp.open("GET", destinationURL, true);
+        xmlHttp.send(null);
+    })
+}
+
+function drawResult(result) {
+    document.getElementById("loader").style.display = "none";
     let container
-    if (data !== '') {
+    if (result[0] !== '') {
         container = template({
             place: data.name + ', ' + data.sys.country,
             weather: 'Weather: ' + data.weather[0].main + ' ( ' + data.weather[0].description + ' )',
@@ -51,7 +54,7 @@ function drawResult(data, myError) {
         });
     } else {
         container = template({
-            errorString: myError,
+            errorString: result[1],
         });
     }
     
@@ -59,7 +62,6 @@ function drawResult(data, myError) {
     let div = document.createElement('div');
     div.innerHTML = container;
     div.id = 'outputContainerID';
-
     body.appendChild(div);
 }
 
