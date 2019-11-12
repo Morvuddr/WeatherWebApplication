@@ -1,5 +1,5 @@
 let url = 'https://api.openweathermap.org/data/2.5/weather';
-let APIkey = '8830d9a0c3a419f55f3e4488ea421320';
+let APIkey = 'b50d06cf0be2ceacf57cf97451e6a7af';
 let source = document.getElementById('hdlbrs_tmplt').innerHTML;
 let template = Handlebars.compile(source);
 
@@ -28,12 +28,12 @@ function search(cityName) {
         let xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function() { 
             if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                return resolve([data = JSON.parse(xmlHttp.responseText),'']);
+                return resolve({ city : JSON.parse(xmlHttp.responseText), error: '' });
             } else if (xmlHttp.readyState === 4 && xmlHttp.status !== 200) {
                 console.log(xmlHttp.responseText);
                 let data = JSON.parse(xmlHttp.responseText);
                 let errorString = 'Congratulations, you broke the site! :) \n (Most likely, the problem is this: ' + data.message + ' )';
-                return resolve(['', errorString]);
+                return resolve({ city: '', error: errorString });
             } 
         };
         xmlHttp.open("GET", destinationURL, true);
@@ -41,20 +41,20 @@ function search(cityName) {
     })
 }
 
-function drawResult(result) {
+function drawResult({city , error}) {
     document.getElementById("loader").style.display = "none";
     let container;
-    if (result[0] !== '') {
+    if (city !== '') {
         container = template({
-            place: data.name + ', ' + data.sys.country,
-            weather: 'Weather: ' + data.weather[0].main + ' ( ' + data.weather[0].description + ' )',
-            temp: 'Temperature: ' + (data.main.temp - 273.15).toFixed(0) + '°C',
-            wind: 'Wind: ' + data.wind.speed + ' m/s',
-            press: 'Pressure: ' + ((data.main.pressure * 100) / 133.322).toFixed(2) + ' Torr'
+            place: city.name + ', ' + city.sys.country,
+            weather: 'Weather: ' + city.weather[0].main + ' ( ' + city.weather[0].description + ' )',
+            temp: 'Temperature: ' + (city.main.temp - 273.15).toFixed(0) + '°C',
+            wind: 'Wind: ' + city.wind.speed + ' m/s',
+            press: 'Pressure: ' + ((city.main.pressure * 100) / 133.322).toFixed(2) + ' Torr'
         });
     } else {
         container = template({
-            errorString: result[1],
+            errorString: error,
         });
     }
     
