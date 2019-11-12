@@ -27,15 +27,15 @@ function search(cityName) {
         let destinationURL = url + '?q=' + cityName + '&APPID=' + APIkey;
         let xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function() { 
-            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
                 return resolve([data = JSON.parse(xmlHttp.responseText),'']);
-            } else if (xmlHttp.readyState == 4 && xmlHttp.status != 200) {
+            } else if (xmlHttp.readyState === 4 && xmlHttp.status !== 200) {
                 console.log(xmlHttp.responseText);
                 let data = JSON.parse(xmlHttp.responseText);
                 let errorString = 'Congratulations, you broke the site! :) \n (Most likely, the problem is this: ' + data.message + ' )';
                 return resolve(['', errorString]);
             } 
-        }
+        };
         xmlHttp.open("GET", destinationURL, true);
         xmlHttp.send(null);
     })
@@ -43,7 +43,7 @@ function search(cityName) {
 
 function drawResult(result) {
     document.getElementById("loader").style.display = "none";
-    let container
+    let container;
     if (result[0] !== '') {
         container = template({
             place: data.name + ', ' + data.sys.country,
