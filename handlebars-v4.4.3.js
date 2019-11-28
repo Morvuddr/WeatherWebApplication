@@ -1661,7 +1661,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 37 */
 /***/ (function(module, exports) {
 
-	// File ignored in coverage tests via setting in .istanbul.yml
+	// File ignored in coverage test via setting in .istanbul.yml
 	/* Jison generated parser */
 	"use strict";
 
